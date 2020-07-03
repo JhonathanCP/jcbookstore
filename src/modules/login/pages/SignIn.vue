@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import LoginServices from '../services'
 export default {
     name: 'SignIn',
     data() {
@@ -43,9 +44,10 @@ export default {
         }
     },
     methods: {
-        signIn() {
+        async signIn() {
             const user = {email: this.email, password: this.password}
-            this.$store.dispatch('login/signIn', user)/* Función del modulo store.js */
+            const { data: { token } }= await LoginServices.signIn(user)
+            this.$store.dispatch('login/signIn', token)/* Función del modulo store.js */
             this.$router.push('/')/* home */
         }
     }

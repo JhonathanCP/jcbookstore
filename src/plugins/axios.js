@@ -8,7 +8,7 @@ const token = Store.state.login.token ? Store.state.login.token: ''
 
 let config = {
   baseURL: process.env.VUE_APP_APIURL || "",
-  Authorization: 'Bearer ' + token,
+  Authorization: 'Bearer ' + token,/* autores */
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
