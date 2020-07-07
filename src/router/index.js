@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { LoginRoutes } from '@/modules/login/routes'
 import { AuthorRoutes } from '@/modules/author/routes'
+import { BookRoutes } from '@/modules/book/routes'
 import HomePage from '@/pages/Home'
 import store from '../store'
 
@@ -17,6 +18,7 @@ Vue.use(VueRouter)
     },
     ...LoginRoutes,
     ...AuthorRoutes,
+    ...BookRoutes
   ]
 
 const router = new VueRouter({
@@ -25,7 +27,7 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) =>{
+router.beforeEach((to, from, next) =>{/* Validación de logueo */
   if(to.matched.some(record => record.meta.requiresAuth)){/* match retorna todas las metaetiquetas */
     if(store.getters['login/isUserConnected']){
       next()
